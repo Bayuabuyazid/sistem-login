@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Register</title>
+</head>
+<body>
+
+<h2>Register</h2>
+
+<form action="proses_register.php" method="post">
+
+    <label>Username</label>
+    <input type="text" name="username" required>
+
+    <br><br>
+
+    <label>Password</label>
+    <input type="password" name="password" required>
+
+    <br><br>
+
+    <button type="submit">Daftar</button>
+
+</form>
+
+</body>
+</html>
