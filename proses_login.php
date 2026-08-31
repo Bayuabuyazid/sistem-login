@@ -1,6 +1,6 @@
 <?php
 
-$session_start();
+session_start();
 include "koneksi.php";
 
 $username = $_POST['username'];
