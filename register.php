@@ -6,7 +6,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST['username'];
     $password = $_POST['password'];
 
-    // Mengamankan password sebelum disimpan
+    // Mengamankan password sebelum disimpan ke database//
     $password_hash = password_hash($password, PASSWORD_DEFAULT);
 
     $query = "INSERT INTO users (username, password)
