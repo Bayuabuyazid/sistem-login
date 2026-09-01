@@ -1,3 +1,25 @@
+<?php
+include 'koneksi.php';
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+
+    // Mengamankan password sebelum disimpan
+    $password_hash = password_hash($password, PASSWORD_DEFAULT);
+
+    $query = "INSERT INTO users (username, password)
+              VALUES ('$username', '$password_hash')";
+
+    if (mysqli_query($koneksi, $query)) {
+        echo "Registrasi berhasil! <a href='index.html'>Login sekarang</a>";
+    } else {
+        echo "Registrasi gagal: " . mysqli_error($koneksi);
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
