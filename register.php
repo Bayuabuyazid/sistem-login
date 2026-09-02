@@ -1,11 +1,8 @@
 <?php
-include 'koneksi.php';
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-
-    $username = $_POST['username'];
+   $username = $_POST['username'];
     $password = $_POST['password'];
 
+    // Mengamankan password sebelum disimpan
     // Mengamankan password sebelum disimpan ke database//
     $password_hash = password_hash($password, PASSWORD_DEFAULT);
 
@@ -17,8 +14,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } else {
         echo "Registrasi gagal: " . mysqli_error($koneksi);
     }
-}
+
 ?>
+
 
 <!DOCTYPE html>
 <html>
@@ -29,7 +27,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <h2>Register</h2>
 
-<form action="register.php" method="post">
+<form action="proses_register.php" method="post">
 
     <label>Username</label>
     <input type="text" name="username" required>
