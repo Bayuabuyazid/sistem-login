@@ -1,22 +1,27 @@
 <?php
-   $username = $_POST['username'];
+
+include "koneksi.php";
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+    $username = $_POST['username'];
     $password = $_POST['password'];
 
-    // Mengamankan password sebelum disimpan
-    // Mengamankan password sebelum disimpan ke database//
+    // Mengubah password menjadi hash
     $password_hash = password_hash($password, PASSWORD_DEFAULT);
 
+    // Menyimpan username dan password hash
     $query = "INSERT INTO users (username, password)
               VALUES ('$username', '$password_hash')";
 
     if (mysqli_query($koneksi, $query)) {
-        echo "Registrasi berhasil! <a href='index.html'>Login sekarang</a>";
+        echo "Registrasi berhasil!";
     } else {
         echo "Registrasi gagal: " . mysqli_error($koneksi);
     }
+}
 
 ?>
-
 
 <!DOCTYPE html>
 <html>
@@ -27,7 +32,7 @@
 
 <h2>Register</h2>
 
-<form action="proses_register.php" method="post">
+<form action="register.php" method="post">
 
     <label>Username</label>
     <input type="text" name="username" required>
