@@ -21,11 +21,11 @@ if (mysqli_num_rows($result) > 0) {
         exit();
 
     } else {
-        echo "Password salah.";
+        echo "Password Benar .";
     }
 
 } else {
-    echo "Username tidak ditemukan.";
+    echo "password Salah.";
 }
 
 ?>
