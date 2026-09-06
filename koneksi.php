@@ -1,7 +1,13 @@
 <?php
-$koneksi = mysqli_connect("localhost", "root", "", "sistem-login");
+
+$host = "localhost";
+$user = "root";
+$password = "";
+$database = "sistem-login";
+
+$koneksi = mysqli_connect($host, $user, $password, $database);
+
 if (!$koneksi) {
     die("Koneksi gagal: " . mysqli_connect_error());
 }
-// Koneksi berhasil
 ?>
