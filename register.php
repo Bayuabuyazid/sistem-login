@@ -20,7 +20,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo "Registrasi gagal: " . mysqli_error($koneksi);
     }
 }
-
 ?>
 
 <!DOCTYPE html>
