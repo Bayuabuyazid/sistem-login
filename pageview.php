@@ -19,36 +19,26 @@
    $sql = "SELECT * FROM users";
    $result = mysqli_query($koneksi, $sql);
 
-   if (mysqli_num_rows($result) > 0) {
-       echo "<table class='w-full border-collapse border border-gray-300'>";
-       echo "<thead>";
-       echo "<tr>";
-       echo "<th class='border border-gray-300 px-4 py-2'>ID</th>";
-       echo "<th class='border border-gray-300 px-4 py-2'>Username</th>";
-       echo "<th class='border border-gray-300 px-4 py-2'>Password</th>";
-       echo "<th class='border border-gray-300 px-4 py-2'>Aksi</th>";
-       echo "</tr>";
-       echo "</thead>";
-       echo "<tbody>";
+    if (mysqli_num_rows($result) > 0) {
+      echo "<ul class='bg-white p-3 rounded shadow'>";
 
-       while ($row = mysqli_fetch_assoc($result)) {
-           echo "<tr>";
-           echo "<td class='border border-gray-300 px-4 py-2'>" . $row['id'] . "</td>";
-           echo "<td class='border border-gray-300 px-4 py-2'>" . $row['username'] . "</td>";
-           echo "<td class='border border-gray-300 px-4 py-2'>" . $row['password'] . "</td>";
-           echo "<td class='border border-gray-300 px-4 py-2'>";
-           echo "<a href='edit.php?id=" . $row['id'] . "' class='px-2 py-1 bg-yellow-500 text-white rounded'>Edit</a> ";
-           echo "<a href='hapus.php?id=" . $row['id'] . "' class='px-2 py-1 bg-red-500 text-white rounded' onclick=\"return confirm('Apakah Anda yakin ingin menghapus data ini?')\">Hapus</a>";
-           echo "</td>";
-           echo "</tr>";
-       }
+      while ($row = mysqli_fetch_assoc($result)) {
+         echo "<li class='border-b py-2'>";
+         echo "<span class='font-bold'>" . $row["nama"] . "</span> - ";
+         echo "<span>" . $row["kelas"] . "</span> ";
+         echo "<a href='hapus.php?id=" . $row["id"] . "' class='ml-3 text-red-500'>Hapus</a>";
+         echo "<a href='update.php?id=" . $row["id"] . "' class='ml-3 text-green-500'>Update</a>";
+         echo "</li>";
+      }
 
-       echo "</tbody>";
-       echo "</table>";
-
+      echo "</ul>";
    } else {
-       echo "Tidak ada data.";
+      echo "<p class='text-gray-600'>Tidak ada data</p>";
    }
-?>
+
+   mysqli_close($conn);
+   ?>
 </body>
+
+
 </html>
