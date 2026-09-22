@@ -28,7 +28,7 @@ if (mysqli_num_rows($result) > 0) {
         $_SESSION['user'] = $user;
 
         // Masuk ke dashboard
-        header("Location: dashboard.php");
+        header("Location: pageview.php");
         exit();
 
     } else {
