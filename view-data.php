@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>view data</title>
+   <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <?php
@@ -28,10 +29,9 @@
                 <table>
                     <thead>
                         <tr>
-                            <th>Nama</th>
-                            <th>Kelas</th>
-                            <th>Alamat</th>
-                            <th>Aksi</th>
+                            <th>ID</th>
+                            <th>Nama Pengguna</th>
+                            <th>Password</th>
                         </tr>
                     </thead>
                     <tbody>
