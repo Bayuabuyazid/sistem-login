@@ -1,24 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Data</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
 <?php
 include 'koneksi.php';
 
 $id = $_GET['id'] ?? null;
 
-if (!$id == null) {
+if ($id === null) {
     echo "ID tidak ditemukan.";
-    exit();
+    exit;
 }
 
-$sql = "SELECT * FROM users WHERE id='$id'";    
-$result = mysqli_query($koneksi, $sql);
-$row = mysqli_fetch_assoc($result);
+// Ambil data lama
+$sql = mysqli_query($koneksi, "SELECT * FROM users WHERE id='$id'"); 
+$siswa = mysqli_fetch_assoc($sql);
+
+if (!$siswa) {
+    echo "Data tidak ditemukan.";
+    exit;
+}
+
+// Proses update
+if (isset($_POST['update'])) {
+
+    $id = $_POST['id'];
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+
+    // Update data
+    mysqli_query($koneksi, "UPDATE users SET 
+        username='$username',
+        password='$password'
+        WHERE id='$id'
+    ");
+
+    header("Location: pageview.php");
+    exit;
+}
 ?>
 
-<form action="update_data.php" method="post">
-    <input type="hidden" name="id" value="<?php echo $row['id']; ?>">
+<div class="container">
 
-    <input type="id" name="id" value="<?php echo $row['username']; ?>" required>
+    <h2>Update Data User</h2>
 
-    <input type="password" name="password" value="<?php echo $row['password']; ?>" required>
+    <form method="post">
 
-    <input type="submit" value="Update Data">
-</form>
+        <!-- ID -->
+        <label>ID</label>
+        <input 
+            type="text" 
+            name="id" 
+            value="<?= htmlspecialchars($siswa['id']); ?>" 
+            readonly
+        >
+
+        <!-- Username -->
+        <label>Username</label>
+        <input 
+            type="text" 
+            name="username" 
+            value="<?= htmlspecialchars($siswa['username']); ?>" 
+            required
+        >
+
+        <!-- Password -->
+        <label>Password</label>
+        <input 
+            type="password" 
+            name="password" 
+            value="<?= htmlspecialchars($siswa['password']); ?>" 
+            required
+        >
+
+        <input type="submit" name="update" value="Update">
+
+    </form>
+
+    <br>
+
+    <a href="pageview.php">
+        <button type="button">Kembali</button>
+    </a>
+
+</div>
+
+</body>
+</html>
